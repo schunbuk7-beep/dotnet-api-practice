@@ -1,5 +1,6 @@
 using DotnetApiPractice.Models;
 using DotnetApiPractice.Data;
+using DotnetApiPractice.DTOs;
 
 namespace DotnetApiPractice.Services;
 
@@ -12,34 +13,72 @@ public class StudentService
         _context = context;
     }
 
-    public List<Student> GetAll()
+    public List<StudentResponseDto> GetAll()
     {
-        return _context.Students.ToList();
+        return _context.Students.Select(s =>  new StudentResponseDto{
+          Id = s.Id,
+          Name = s.Name,
+          Age = s.Age,
+          Course = s.Course,
+          Email = s.Email
+        }).ToList();
     }
 
-    public Student? GetById(int id)
+    public StudentResponseDto? GetById(int id)
     {
-      return _context.Students.FirstOrDefault(s => s.Id == id);
+      var student = _context.Students.FirstOrDefault(s => s.Id == id);
+      if(student == null) return null;
+       
+       return new StudentResponseDto{
+        Id = student.Id,
+        Name = student.Name,
+        Age = student.Age,
+        Course = student.Course,
+        Email = student.Email
+       };
     }
 
-    public Student Add(Student student)
+    public StudentResponseDto Add(StudentCreateDto dto)
     {
+      var student = new Student{
+        Name = dto.Name,
+        Age  = dto.Age,
+        Course = dto.Course,
+        Email = dto.Email
+      };
+
       _context.Students.Add(student);
       _context.SaveChanges();
-      return student;
+
+      return new StudentResponseDto
+      {
+        Id = student.Id,
+        Name = student.Name,
+        Age = student.Age,
+        Course = student.Course,
+        Email = student.Email
+      };
     }
 
-    public Student? Update(int id,Student updatedStudent)
+    public StudentResponseDto? Update(int id,StudentCreateDto dto)
     {
       var student = _context.Students.FirstOrDefault(s => s.Id == id);
       if(student == null)  return null;
 
-      student.Name = updatedStudent.Name;
-      student.Age = updatedStudent.Age;
-      student.Course = updatedStudent.Course;
+      student.Name = dto.Name;
+      student.Age = dto.Age;
+      student.Course = dto.Course;
+      student.Email = dto.Email;
 
       _context.SaveChanges();
-      return student;
+
+      return new StudentResponseDto{
+          Id = student.Id,
+          Name = student.Name,
+          Age = student.Age,
+          Course = student.Course,
+          Email = student.Email
+      };
     }
 
     public bool Delete(int id)

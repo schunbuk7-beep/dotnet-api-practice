@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using DotnetApiPractice.Models;
+using DotnetApiPractice.DTOs;
 using DotnetApiPractice.Services;
 
 namespace DotnetApiPractice.Conrollers;
@@ -32,21 +32,21 @@ public class StudentController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Add([FromBody] Student student)
+    public IActionResult Add([FromBody] StudentCreateDto dto)
     {
-        var created = _studentService.Add(student);
+        var created = _studentService.Add(dto);
         return CreatedAtAction(nameof(GetById),new {id = created.Id}, created);
     }
 
     [HttpPut("{id}")]
-    public IActionResult Update(int id,[FromBody] Student updatedStudent )
+    public IActionResult Update(int id,[FromBody] StudentCreateDto dto )
     {
-        var student = _studentService.Update(id,updatedStudent);
+        var student = _studentService.Update(id,dto);
 
         if(student == null)
         return NotFound(new { Message =  $"Student with Id {id} not Found"});
 
-        return Ok(student);
+        return NoContent();
     }
 
     [HttpDelete("{id}")]
