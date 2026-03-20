@@ -1,14 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using DotnetApiPractice.Data;
-using DotnetApiPractice.Services;
+using DotnetApiPractice.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<StudentDbContext>(options =>
         options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
-builder.Services.AddScoped<StudentService>();
 
 var app = builder.Build();
 app.UseHttpsRedirection();
