@@ -13,6 +13,7 @@ public class StudentController : ControllerBase
     public StudentController(IStudentRepository repository)
     {
          _repository =  repository;
+
     }
 
     [HttpGet]
