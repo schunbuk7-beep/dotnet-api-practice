@@ -147,3 +147,11 @@
 /workspaces/dotnet-api-practice/DotnetApiPractice/bin/Debug/net10.0/runtimes/win-arm64/native/e_sqlite3.dll
 /workspaces/dotnet-api-practice/DotnetApiPractice/bin/Debug/net10.0/runtimes/win-x64/native/e_sqlite3.dll
 /workspaces/dotnet-api-practice/DotnetApiPractice/bin/Debug/net10.0/runtimes/win-x86/native/e_sqlite3.dll
+/workspaces/dotnet-api-practice/DotnetApiPractice/bin/Debug/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/workspaces/dotnet-api-practice/DotnetApiPractice/bin/Debug/net10.0/Microsoft.IdentityModel.Abstractions.dll
+/workspaces/dotnet-api-practice/DotnetApiPractice/bin/Debug/net10.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/workspaces/dotnet-api-practice/DotnetApiPractice/bin/Debug/net10.0/Microsoft.IdentityModel.Logging.dll
+/workspaces/dotnet-api-practice/DotnetApiPractice/bin/Debug/net10.0/Microsoft.IdentityModel.Protocols.dll
+/workspaces/dotnet-api-practice/DotnetApiPractice/bin/Debug/net10.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/workspaces/dotnet-api-practice/DotnetApiPractice/bin/Debug/net10.0/Microsoft.IdentityModel.Tokens.dll
+/workspaces/dotnet-api-practice/DotnetApiPractice/bin/Debug/net10.0/System.IdentityModel.Tokens.Jwt.dll

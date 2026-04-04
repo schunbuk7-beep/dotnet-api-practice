@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using DotnetApiPractice.DTOs;
 using DotnetApiPractice.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DotnetApiPractice.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[Authorize]
 public class StudentController : ControllerBase
 {
     private readonly IStudentRepository _repository;
@@ -19,6 +21,7 @@ public class StudentController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin,User")]
     public IActionResult GetAll()
     {
        _logger.LogInformation("GET/student called");
@@ -26,6 +29,7 @@ public class StudentController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize(Roles = "Admin,User")]
     public IActionResult GetById(int id)
     {
        _logger.LogInformation("GET /student/{Id} called, id");
@@ -37,6 +41,7 @@ public class StudentController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public IActionResult Add([FromBody] StudentCreateDto dto)
     {
         _logger.LogInformation("POST /student called for{Name}", dto.Name);
@@ -45,6 +50,7 @@ public class StudentController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize(Roles = "Admin")]
     public IActionResult Update(int id,[FromBody] StudentCreateDto dto )
     {
         _logger.LogInformation("PUT/student/{Id} called, id");
@@ -57,6 +63,7 @@ public class StudentController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
     public IActionResult Delete(int id)
     {
         _logger.LogInformation("DELETE /student/{Id} called", id);
